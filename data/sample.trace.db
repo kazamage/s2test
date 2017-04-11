@@ -1,0 +1,96 @@
+2017-04-10 23:20:07 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: パラメータ "columnIndex" に対する値 "0" が不正です
+Invalid value "0" for parameter "columnIndex" [90008-194]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.getInvalidValueException(DbException.java:228)
+	at org.h2.jdbc.JdbcResultSet.checkColumnIndex(JdbcResultSet.java:3189)
+	at org.h2.jdbc.JdbcResultSet.get(JdbcResultSet.java:3217)
+	at org.h2.jdbc.JdbcResultSet.getInt(JdbcResultSet.java:326)
+	at jp.pgw.develop.swallow.sample.DBServiceImpl.query(DBServiceImpl.java:52)
+	at jp.pgw.develop.swallow.sample.TestTargetImpl.exec(TestTargetImpl.java:16)
+	at jp.pgw.develop.swallow.sample.Main.main(Main.java:11)
+2017-04-10 23:20:16 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: パラメータ "columnIndex" に対する値 "0" が不正です
+Invalid value "0" for parameter "columnIndex" [90008-194]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.getInvalidValueException(DbException.java:228)
+	at org.h2.jdbc.JdbcResultSet.checkColumnIndex(JdbcResultSet.java:3189)
+	at org.h2.jdbc.JdbcResultSet.get(JdbcResultSet.java:3217)
+	at org.h2.jdbc.JdbcResultSet.getInt(JdbcResultSet.java:326)
+	at jp.pgw.develop.swallow.sample.DBServiceImpl.query(DBServiceImpl.java:52)
+	at jp.pgw.develop.swallow.sample.TestTargetImpl.exec(TestTargetImpl.java:18)
+	at jp.pgw.develop.swallow.sample.Main.main(Main.java:11)
+2017-04-10 23:20:27 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: パラメータ "columnIndex" に対する値 "0" が不正です
+Invalid value "0" for parameter "columnIndex" [90008-194]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.getInvalidValueException(DbException.java:228)
+	at org.h2.jdbc.JdbcResultSet.checkColumnIndex(JdbcResultSet.java:3189)
+	at org.h2.jdbc.JdbcResultSet.get(JdbcResultSet.java:3217)
+	at org.h2.jdbc.JdbcResultSet.getInt(JdbcResultSet.java:326)
+	at jp.pgw.develop.swallow.sample.DBServiceImpl.query(DBServiceImpl.java:52)
+	at jp.pgw.develop.swallow.sample.TestTargetImpl.exec(TestTargetImpl.java:16)
+	at jp.pgw.develop.swallow.sample.Main.main(Main.java:11)
+2017-04-10 23:21:32 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: パラメータ "columnIndex" に対する値 "0" が不正です
+Invalid value "0" for parameter "columnIndex" [90008-194]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.getInvalidValueException(DbException.java:228)
+	at org.h2.jdbc.JdbcResultSet.checkColumnIndex(JdbcResultSet.java:3189)
+	at org.h2.jdbc.JdbcResultSet.get(JdbcResultSet.java:3217)
+	at org.h2.jdbc.JdbcResultSet.getInt(JdbcResultSet.java:326)
+	at jp.pgw.develop.swallow.sample.DBServiceImpl.query(DBServiceImpl.java:52)
+	at jp.pgw.develop.swallow.sample.TestTargetImpl.exec(TestTargetImpl.java:18)
+	at jp.pgw.develop.swallow.sample.Main.main(Main.java:11)
+2017-04-10 23:21:52 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: パラメータ "columnIndex" に対する値 "0" が不正です
+Invalid value "0" for parameter "columnIndex" [90008-194]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.getInvalidValueException(DbException.java:228)
+	at org.h2.jdbc.JdbcResultSet.checkColumnIndex(JdbcResultSet.java:3189)
+	at org.h2.jdbc.JdbcResultSet.get(JdbcResultSet.java:3217)
+	at org.h2.jdbc.JdbcResultSet.getInt(JdbcResultSet.java:326)
+	at jp.pgw.develop.swallow.sample.DBServiceImpl.query(DBServiceImpl.java:52)
+	at jp.pgw.develop.swallow.sample.TestTargetImpl.exec(TestTargetImpl.java:16)
+	at jp.pgw.develop.swallow.sample.Main.main(Main.java:11)
+2017-04-10 23:22:56 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: 有効なデータがありません
+No data is available [2000-194]
+2017-04-10 23:23:36 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: 有効なデータがありません
+No data is available [2000-194]
+2017-04-10 23:25:41 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: 有効なデータがありません
+No data is available [2000-194]
+2017-04-10 23:27:07 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: 有効なデータがありません
+No data is available [2000-194]
+2017-04-10 23:27:50 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: 有効なデータがありません
+No data is available [2000-194]
+2017-04-10 23:28:09 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: 有効なデータがありません
+No data is available [2000-194]
+2017-04-10 23:28:13 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: 有効なデータがありません
+No data is available [2000-194]
+2017-04-10 23:28:14 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: 有効なデータがありません
+No data is available [2000-194]
+2017-04-10 23:32:58 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: 有効なデータがありません
+No data is available [2000-194]
+2017-04-10 23:32:58 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: 有効なデータがありません
+No data is available [2000-194]
+2017-04-10 23:33:41 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: 有効なデータがありません
+No data is available [2000-194]
+2017-04-10 23:33:41 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: 有効なデータがありません
+No data is available [2000-194]
