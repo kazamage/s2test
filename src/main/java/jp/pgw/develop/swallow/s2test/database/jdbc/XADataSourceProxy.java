@@ -14,11 +14,8 @@ public class XADataSourceProxy implements XADataSource {
 
 	final XADataSource delegate;
 
-	final boolean enableCommit;
-
-	public XADataSourceProxy(XADataSource delegate, boolean enableCommit) {
+	public XADataSourceProxy(final XADataSource delegate) {
 		this.delegate = delegate;
-		this.enableCommit = enableCommit;
 	}
 
 	@Override
@@ -27,12 +24,12 @@ public class XADataSourceProxy implements XADataSource {
 	}
 
 	@Override
-	public void setLogWriter(PrintWriter out) throws SQLException {
+	public void setLogWriter(final PrintWriter out) throws SQLException {
 		delegate.setLogWriter(out);
 	}
 
 	@Override
-	public void setLoginTimeout(int seconds) throws SQLException {
+	public void setLoginTimeout(final int seconds) throws SQLException {
 		delegate.setLoginTimeout(seconds);
 	}
 
@@ -52,12 +49,12 @@ public class XADataSourceProxy implements XADataSource {
 	}
 
 	@Override
-	public XAConnection getXAConnection(String user, String password) throws SQLException {
+	public XAConnection getXAConnection(final String user, final String password) throws SQLException {
 		return getXAConnection(delegate.getXAConnection(user, password));
 	}
 
-	protected XAConnection getXAConnection(XAConnection delegate) throws SQLException {
-		if (enableCommit || !(delegate instanceof XAConnectionImpl)) {
+	protected XAConnection getXAConnection(final XAConnection delegate) throws SQLException {
+		if (!(delegate instanceof XAConnectionImpl)) {
 			return delegate;
 		}
 		return new XAConnectionImpl(DataSourceProxy.newConnectionProxy(delegate.getConnection()));

@@ -15,11 +15,8 @@ public class DataSourceProxy implements DataSource {
 
 	final DataSource delegate;
 
-	final boolean enableCommit;
-
-	public DataSourceProxy(DataSource delegate, boolean enableCommit) {
+	public DataSourceProxy(final DataSource delegate) {
 		this.delegate = delegate;
-		this.enableCommit = enableCommit;
 	}
 
 	@Override
@@ -28,12 +25,12 @@ public class DataSourceProxy implements DataSource {
 	}
 
 	@Override
-	public void setLogWriter(PrintWriter out) throws SQLException {
+	public void setLogWriter(final PrintWriter out) throws SQLException {
 		delegate.setLogWriter(out);
 	}
 
 	@Override
-	public void setLoginTimeout(int seconds) throws SQLException {
+	public void setLoginTimeout(final int seconds) throws SQLException {
 		delegate.setLoginTimeout(seconds);
 	}
 
@@ -48,12 +45,12 @@ public class DataSourceProxy implements DataSource {
 	}
 
 	@Override
-	public <T> T unwrap(Class<T> iface) throws SQLException {
+	public <T> T unwrap(final Class<T> iface) throws SQLException {
 		return delegate.unwrap(iface);
 	}
 
 	@Override
-	public boolean isWrapperFor(Class<?> iface) throws SQLException {
+	public boolean isWrapperFor(final Class<?> iface) throws SQLException {
 		return delegate.isWrapperFor(iface);
 	}
 
@@ -63,14 +60,11 @@ public class DataSourceProxy implements DataSource {
 	}
 
 	@Override
-	public Connection getConnection(String username, String password) throws SQLException {
+	public Connection getConnection(final String username, final String password) throws SQLException {
 		return getConnection(delegate.getConnection(username, password));
 	}
 
-	protected Connection getConnection(Connection delegate) throws SQLException {
-		if (enableCommit) {
-			return delegate;
-		}
+	protected Connection getConnection(final Connection delegate) throws SQLException {
 		delegate.setAutoCommit(false);
 		return newConnectionProxy(delegate);
 	}
@@ -84,12 +78,12 @@ public class DataSourceProxy implements DataSource {
 
 		final Connection delegate;
 
-		ConnectionHandler(Connection delegate) {
+		ConnectionHandler(final Connection delegate) {
 			this.delegate = delegate;
 		}
 
 		@Override
-		public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+		public Object invoke(final Object proxy, final Method method, final Object[] args) throws Throwable {
 			if ("setAutoCommit".equals(method.getName()) || "commit".equals(method.getName())) {
 				return null;
 			}

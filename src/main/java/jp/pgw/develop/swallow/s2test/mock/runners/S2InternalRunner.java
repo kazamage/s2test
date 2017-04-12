@@ -69,7 +69,7 @@ public class S2InternalRunner extends BlockJUnit4ClassRunner {
 
 	protected S2InternalTestContext testContext;
 
-	public S2InternalRunner(Class<?> klass, final Supplier<MockitoTestListener> listenerSupplier)
+	public S2InternalRunner(final Class<?> klass, final Supplier<MockitoTestListener> listenerSupplier)
 			throws InitializationError {
 		super(klass);
 		this.testClass = klass;
@@ -91,7 +91,7 @@ public class S2InternalRunner extends BlockJUnit4ClassRunner {
 		}
 	}
 
-	public void initContainer(FrameworkMethod method) {
+	public void initContainer(final FrameworkMethod method) {
 		boundFields = CollectionsUtil.newArrayList();
 		Env.setFilePath(S2Test.ENV_PATH);
 		Env.setValueIfAbsent(S2Test.ENV_VALUE);
@@ -115,9 +115,9 @@ public class S2InternalRunner extends BlockJUnit4ClassRunner {
 		for (final Field field : boundFields) {
 			try {
 				field.set(target, null);
-			} catch (IllegalArgumentException e) {
+			} catch (final IllegalArgumentException e) {
 				System.err.println(e);
-			} catch (IllegalAccessException e) {
+			} catch (final IllegalAccessException e) {
 				System.err.println(e);
 			}
 		}
@@ -135,7 +135,7 @@ public class S2InternalRunner extends BlockJUnit4ClassRunner {
 	}
 
 	@Override
-	protected Statement withBefores(FrameworkMethod method, Object target, Statement statement) {
+	protected Statement withBefores(final FrameworkMethod method, final Object target, final Statement statement) {
 		// get new test listener and add add it to the framework
 		mockitoTestListener = listenerSupplier.get();
 		Mockito.framework().addListener(mockitoTestListener);
@@ -147,27 +147,27 @@ public class S2InternalRunner extends BlockJUnit4ClassRunner {
 	}
 
 	@Override
-	protected Statement withAfters(FrameworkMethod method, Object target, Statement statement) {
+	protected Statement withAfters(final FrameworkMethod method, final Object target, final Statement statement) {
 		return super.withAfters(method, target, new S2RunUnbindFields(statement, this));
 	}
 
 	@Override
-	protected Statement methodBlock(FrameworkMethod method) {
+	protected Statement methodBlock(final FrameworkMethod method) {
 		return new S2RunPostProcess(super.methodBlock(method), this, method);
 	}
 
 	@Override
 	public void run(final RunNotifier notifier) {
-		RunListener listener = new RunListener() {
+		final RunListener listener = new RunListener() {
 			Throwable failure;
 
 			@Override
-			public void testFailure(Failure failure) throws Exception {
+			public void testFailure(final Failure failure) throws Exception {
 				this.failure = failure.getException();
 			}
 
 			@Override
-			public void testFinished(Description description) throws Exception {
+			public void testFinished(final Description description) throws Exception {
 				super.testFinished(description);
 				try {
 					if (mockitoTestListener != null) {
@@ -176,7 +176,7 @@ public class S2InternalRunner extends BlockJUnit4ClassRunner {
 								new DefaultTestFinishedEvent(target, description.getMethodName(), failure));
 					}
 					Mockito.validateMockitoUsage();
-				} catch (Throwable t) {
+				} catch (final Throwable t) {
 					// In order to produce clean exception to the user
 					// we need to fire test failure with the right
 					// description
@@ -191,7 +191,7 @@ public class S2InternalRunner extends BlockJUnit4ClassRunner {
 		super.run(notifier);
 	}
 
-	protected S2Container createRootContainer(Method method) {
+	protected S2Container createRootContainer(final Method method) {
 		final String rootDicon = introspector.getRootDicon(testClass, method);
 		if (StringUtil.isEmpty(rootDicon)) {
 			if (StringUtil.isEmpty(configFile)) {
@@ -200,18 +200,19 @@ public class S2InternalRunner extends BlockJUnit4ClassRunner {
 				return S2ContainerFactory.create(configFile);
 			}
 		}
-		S2Container container = S2ContainerFactory.create(rootDicon);
+		final S2Container container = S2ContainerFactory.create(rootDicon);
 		if (StringUtil.isNotEmpty(configFile)) {
 			S2ContainerFactory.include(container, configFile);
 		}
 		return container;
 	}
 
-	protected S2InternalTestContext setUpTestContext(Method method) {
+	protected S2InternalTestContext setUpTestContext(final Method method) {
 		final S2Container container = createRootContainer(method);
 		container.register(S2TestContextImpl.class);
 		SingletonS2ContainerFactory.setContainer(container);
-		S2InternalTestContext testContext = S2InternalTestContext.class
+
+		final S2InternalTestContext testContext = S2InternalTestContext.class
 				.cast(container.getComponent(S2InternalTestContext.class));
 		testContext.setTestClass(testClass);
 		testContext.setTestMethod(method);
@@ -221,21 +222,23 @@ public class S2InternalRunner extends BlockJUnit4ClassRunner {
 			testContext.register(namingConvention);
 			testContext.setNamingConvention(namingConvention);
 		}
-		if (container.hasComponentDef(XADataSource.class)) {
-			final ComponentDef def = container.getComponentDef(XADataSource.class);
-			testContext
-			.override(new XADataSourceProxy(XADataSource.class.cast(container.getComponent(XADataSource.class)),
-					enableCommit), def.getComponentName());
-		}
-		if (container.hasComponentDef(DataSource.class)) {
-			final ComponentDef def = container.getComponentDef(DataSource.class);
-			testContext.override(
-					new DataSourceProxy(DataSource.class.cast(container.getComponent(DataSource.class)), enableCommit),
-					def.getComponentName());
+
+		if (!enableCommit) {
+			if (container.hasComponentDef(XADataSource.class)) {
+				final ComponentDef def = container.getComponentDef(XADataSource.class);
+				testContext.override(
+						new XADataSourceProxy(XADataSource.class.cast(container.getComponent(XADataSource.class))),
+						def.getComponentName());
+			}
+			if (container.hasComponentDef(DataSource.class)) {
+				final ComponentDef def = container.getComponentDef(DataSource.class);
+				testContext.override(
+						new DataSourceProxy(DataSource.class.cast(container.getComponent(DataSource.class))),
+						def.getComponentName());
+			}
 		}
 
 		for (Class<?> clazz = testClass; clazz != Object.class; clazz = clazz.getSuperclass()) {
-
 			final Field[] fields = clazz.getDeclaredFields();
 			for (int i = 0; i < fields.length; ++i) {
 				final Field field = fields[i];
@@ -269,7 +272,7 @@ public class S2InternalRunner extends BlockJUnit4ClassRunner {
 			if (testContext.hasComponentDef(name)) {
 				component = testContext.getComponent(name);
 				if (component != null) {
-					Class<?> componentClass = component.getClass();
+					final Class<?> componentClass = component.getClass();
 					if (!field.getType().isAssignableFrom(componentClass)) {
 						component = null;
 					}

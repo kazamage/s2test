@@ -14,30 +14,30 @@ import jp.pgw.develop.swallow.s2test.mock.runners.S2RunnerFactory;
 public class S2MockitoJUnitRunner extends Runner implements Filterable {
 
 	public static class Silent extends S2MockitoJUnitRunner {
-		public Silent(Class<?> klass) throws Exception {
+		public Silent(final Class<?> klass) throws Exception {
 			super(new S2RunnerFactory().create(klass), klass);
 		}
 	}
 
 	public static class Strict extends S2MockitoJUnitRunner {
-		public Strict(Class<?> klass) throws Exception {
+		public Strict(final Class<?> klass) throws Exception {
 			super(new StrictRunner(new S2RunnerFactory().createStrict(klass), klass), klass);
 		}
 	}
 
 	public static class StrictStubs extends S2MockitoJUnitRunner {
-		public StrictStubs(Class<?> klass) throws Exception {
+		public StrictStubs(final Class<?> klass) throws Exception {
 			super(new StrictRunner(new S2RunnerFactory().createStrictStubs(klass), klass), klass);
 		}
 	}
 
 	private final InternalRunner runner;
 
-	public S2MockitoJUnitRunner(Class<?> klass) throws Exception {
+	public S2MockitoJUnitRunner(final Class<?> klass) throws Exception {
 		this(new StrictRunner(new S2RunnerFactory().createStrict(klass), klass), klass);
 	}
 
-	S2MockitoJUnitRunner(InternalRunner runner, Class<?> klass) throws Exception {
+	S2MockitoJUnitRunner(final InternalRunner runner, final Class<?> klass) throws Exception {
 		this.runner = runner;
 	}
 
@@ -52,7 +52,7 @@ public class S2MockitoJUnitRunner extends Runner implements Filterable {
 	}
 
 	@Override
-	public void filter(Filter filter) throws NoTestsRemainException {
+	public void filter(final Filter filter) throws NoTestsRemainException {
 		runner.filter(filter);
 	}
 

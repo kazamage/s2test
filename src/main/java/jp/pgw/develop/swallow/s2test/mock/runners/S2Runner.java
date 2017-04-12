@@ -13,7 +13,7 @@ public class S2Runner implements InternalRunner {
 
 	protected final S2InternalRunner runner;
 
-	public S2Runner(Class<?> testClass, final Supplier<MockitoTestListener> listenerSupplier)
+	public S2Runner(final Class<?> testClass, final Supplier<MockitoTestListener> listenerSupplier)
 			throws InitializationError {
 		runner = new S2InternalRunner(testClass, listenerSupplier);
 	}
@@ -29,7 +29,7 @@ public class S2Runner implements InternalRunner {
 	}
 
 	@Override
-	public void filter(Filter filter) throws NoTestsRemainException {
+	public void filter(final Filter filter) throws NoTestsRemainException {
 		runner.filter(filter);
 	}
 

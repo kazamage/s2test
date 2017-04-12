@@ -13,7 +13,7 @@ public class S2RunPostProcess extends Statement {
 
 	protected final FrameworkMethod method;
 
-	public S2RunPostProcess(final Statement statement, S2InternalRunner runner, FrameworkMethod method) {
+	public S2RunPostProcess(final Statement statement, final S2InternalRunner runner, final FrameworkMethod method) {
 		this.statement = statement;
 		this.runner = runner;
 		this.method = method;

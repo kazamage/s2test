@@ -10,7 +10,7 @@ public class S2RunDestroyContext extends Statement {
 
 	protected final S2InternalRunner runner;
 
-	public S2RunDestroyContext(final Statement statement, S2InternalRunner runner) {
+	public S2RunDestroyContext(final Statement statement, final S2InternalRunner runner) {
 		this.statement = statement;
 		this.runner = runner;
 	}
