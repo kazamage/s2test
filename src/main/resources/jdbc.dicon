@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.4//EN"
   "http://www.seasar.org/dtd/components24.dtd">
-<components>
-  <include path="jta.dicon"/>
-  <include path="convention.dicon"/>
-  <component name="xaDataSource" class="org.seasar.extension.dbcp.impl.XADataSourceImpl">
-    <property name="driverClassName">"org.h2.Driver"</property>
-    <property name="URL">"jdbc:h2:file:./data/sample;DB_CLOSE_DELAY=-1;AUTOCOMMIT=FALSE"</property>
-    <property name="user">"sa"</property>
-    <property name="password">""</property>
-  </component>
-  <component name="connectionPool" class="org.seasar.extension.dbcp.impl.ConnectionPoolImpl">
-    <property name="timeout">30</property>
-    <property name="maxPoolSize">10</property>
-    <destroyMethod name="close"/>
-  </component>
-  <component name="dataSource" class="org.seasar.extension.dbcp.impl.DataSourceImpl">
-    <arg>connectionPool</arg>
-  </component>
+<components namespace="jdbc">
+    <include path="jta.dicon" />
+    <component name="xaDataSource" class="org.seasar.extension.dbcp.impl.XADataSourceImpl">
+        <property name="driverClassName">"org.h2.Driver"</property>
+        <property name="URL">"jdbc:h2:file:./data/sample;DB_CLOSE_DELAY=-1;AUTOCOMMIT=FALSE"</property>
+        <property name="user">"sa"</property>
+        <property name="password">""</property>
+        <destroyMethod>
+            @org.seasar.framework.util.DriverManagerUtil@deregisterAllDrivers()
+        </destroyMethod>
+    </component>
+    <component name="connectionPool" class="org.seasar.extension.dbcp.impl.ConnectionPoolImpl">
+        <property name="timeout">600</property>
+        <property name="maxPoolSize">10</property>
+        <property name="allowLocalTx">true</property>
+        <destroyMethod name="close" />
+    </component>
+    <component name="dataSource" class="org.seasar.extension.dbcp.impl.DataSourceImpl">
+        <arg>connectionPool</arg>
+    </component>
 </components>

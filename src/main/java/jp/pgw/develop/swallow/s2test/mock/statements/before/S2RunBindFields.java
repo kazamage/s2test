@@ -6,19 +6,19 @@ import jp.pgw.develop.swallow.s2test.mock.runners.S2InternalRunner;
 
 public class S2RunBindFields extends Statement {
 
-	protected final Statement statement;
+    protected final Statement statement;
 
-	protected final S2InternalRunner runner;
+    protected final S2InternalRunner runner;
 
-	public S2RunBindFields(final Statement statement, final S2InternalRunner runner) {
-		this.statement = statement;
-		this.runner = runner;
-	}
+    public S2RunBindFields(final Statement statement, final S2InternalRunner runner) {
+        this.statement = statement;
+        this.runner = runner;
+    }
 
-	@Override
-	public void evaluate() throws Throwable {
-		runner.bindFields();
-		statement.evaluate();
-	}
+    @Override
+    public void evaluate() throws Throwable {
+        runner.bindFields();
+        statement.evaluate();
+    }
 
 }

@@ -11,26 +11,26 @@ import org.mockito.internal.util.Supplier;
 
 public class S2Runner implements InternalRunner {
 
-	protected final S2InternalRunner runner;
+    protected final S2InternalRunner runner;
 
-	public S2Runner(final Class<?> testClass, final Supplier<MockitoTestListener> listenerSupplier)
-			throws InitializationError {
-		runner = new S2InternalRunner(testClass, listenerSupplier);
-	}
+    public S2Runner(final Class<?> testClass, final Supplier<MockitoTestListener> listenerSupplier)
+            throws InitializationError {
+        runner = new S2InternalRunner(testClass, listenerSupplier);
+    }
 
-	@Override
-	public void run(final RunNotifier notifier) {
-		runner.run(notifier);
-	}
+    @Override
+    public void run(final RunNotifier notifier) {
+        runner.run(notifier);
+    }
 
-	@Override
-	public Description getDescription() {
-		return runner.getDescription();
-	}
+    @Override
+    public Description getDescription() {
+        return runner.getDescription();
+    }
 
-	@Override
-	public void filter(final Filter filter) throws NoTestsRemainException {
-		runner.filter(filter);
-	}
+    @Override
+    public void filter(final Filter filter) throws NoTestsRemainException {
+        runner.filter(filter);
+    }
 
 }

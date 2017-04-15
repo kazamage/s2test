@@ -7,26 +7,26 @@ import jp.pgw.develop.swallow.s2test.mock.runners.S2InternalRunner;
 
 public class S2RunPostProcess extends Statement {
 
-	protected final Statement statement;
+    protected final Statement statement;
 
-	protected final S2InternalRunner runner;
+    protected final S2InternalRunner runner;
 
-	protected final FrameworkMethod method;
+    protected final FrameworkMethod method;
 
-	public S2RunPostProcess(final Statement statement, final S2InternalRunner runner, final FrameworkMethod method) {
-		this.statement = statement;
-		this.runner = runner;
-		this.method = method;
-	}
+    public S2RunPostProcess(final Statement statement, final S2InternalRunner runner, final FrameworkMethod method) {
+        this.statement = statement;
+        this.runner = runner;
+        this.method = method;
+    }
 
-	@Override
-	public void evaluate() throws Throwable {
-		runner.initContainer(method);
-		try {
-			statement.evaluate();
-		} finally {
-			runner.dispose();
-		}
-	}
+    @Override
+    public void evaluate() throws Throwable {
+        runner.initContainer(method);
+        try {
+            statement.evaluate();
+        } finally {
+            runner.dispose();
+        }
+    }
 
 }

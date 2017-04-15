@@ -19,9 +19,9 @@ public final class S2Tests {
 
     static final Logger log = LoggerFactory.getLogger(S2Tests.class);
 
-    public static final String ENV_PATH = "env_ut.txt";
+    public static final String ENV_PATH = "env.txt";
 
-    public static final String ENV_VALUE = "ut";
+    public static final String ENV_VALUE = "it";
 
     public static S2Container override(final S2Container container, final S2Container override) {
         synchronized (container.getRoot()) {
