@@ -10,8 +10,8 @@ import java.lang.annotation.Target;
 @Documented
 @Retention(RUNTIME)
 @Target(TYPE)
-public @interface S2DatabaseConfiguration {
+public @interface S2TestContextConfiguration {
 
-	boolean enableCommit() default false;
+    String value() default "app.dicon";
 
 }

@@ -1,4 +1,8 @@
-package jp.pgw.develop.swallow.sample;
+package jp.pgw.develop.swallow.sample.target.impl;
+
+import jp.pgw.develop.swallow.sample.service.DBService;
+import jp.pgw.develop.swallow.sample.service.Service;
+import jp.pgw.develop.swallow.sample.target.TestTarget;
 
 public class TestTargetImpl implements TestTarget {
 

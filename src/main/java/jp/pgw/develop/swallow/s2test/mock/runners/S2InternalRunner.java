@@ -37,10 +37,10 @@ import org.seasar.framework.util.StringUtil;
 import org.seasar.framework.util.tiger.CollectionsUtil;
 import org.seasar.framework.util.tiger.ReflectionUtil;
 
-import jp.pgw.develop.swallow.s2test.annotations.S2ContextConfiguration;
-import jp.pgw.develop.swallow.s2test.annotations.S2DatabaseConfiguration;
+import jp.pgw.develop.swallow.s2test.annotations.S2TestContextConfiguration;
+import jp.pgw.develop.swallow.s2test.annotations.S2DatabaseTestConfiguration;
 import jp.pgw.develop.swallow.s2test.core.S2InternalTestContext;
-import jp.pgw.develop.swallow.s2test.core.S2Test;
+import jp.pgw.develop.swallow.s2test.core.S2Tests;
 import jp.pgw.develop.swallow.s2test.core.S2TestContextImpl;
 import jp.pgw.develop.swallow.s2test.database.jdbc.DataSourceProxy;
 import jp.pgw.develop.swallow.s2test.database.jdbc.XADataSourceProxy;
@@ -76,14 +76,14 @@ public class S2InternalRunner extends BlockJUnit4ClassRunner {
 		this.listenerSupplier = listenerSupplier;
 		introspector = new ConventionTestIntrospector();
 		introspector.init();
-		final S2ContextConfiguration contextConfig = testClass.getDeclaredAnnotation(S2ContextConfiguration.class);
+		final S2TestContextConfiguration contextConfig = testClass.getDeclaredAnnotation(S2TestContextConfiguration.class);
 		if (contextConfig == null || contextConfig.value() == null || contextConfig.value().length() == 0) {
 			configFile = null;
 		} else {
 			configFile = contextConfig.value();
 		}
-		final S2DatabaseConfiguration transactionConfig = testClass
-				.getDeclaredAnnotation(S2DatabaseConfiguration.class);
+		final S2DatabaseTestConfiguration transactionConfig = testClass
+				.getDeclaredAnnotation(S2DatabaseTestConfiguration.class);
 		if (transactionConfig == null) {
 			enableCommit = false;
 		} else {
@@ -93,8 +93,8 @@ public class S2InternalRunner extends BlockJUnit4ClassRunner {
 
 	public void initContainer(final FrameworkMethod method) {
 		boundFields = CollectionsUtil.newArrayList();
-		Env.setFilePath(S2Test.ENV_PATH);
-		Env.setValueIfAbsent(S2Test.ENV_VALUE);
+		Env.setFilePath(S2Tests.ENV_PATH);
+		Env.setValueIfAbsent(S2Tests.ENV_VALUE);
 		testContext = setUpTestContext(method.getMethod());
 	}
 

@@ -7,14 +7,16 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 
-import jp.pgw.develop.swallow.s2test.annotations.S2ContextConfiguration;
-import jp.pgw.develop.swallow.s2test.annotations.S2DatabaseConfiguration;
+import jp.pgw.develop.swallow.s2test.annotations.S2TestContextConfiguration;
+import jp.pgw.develop.swallow.s2test.annotations.S2DatabaseTestConfiguration;
 import jp.pgw.develop.swallow.s2test.core.S2TestContext;
 import jp.pgw.develop.swallow.s2test.mock.S2MockitoJUnitRunner;
+import jp.pgw.develop.swallow.sample.service.Service;
+import jp.pgw.develop.swallow.sample.target.TestTarget;
 
 @RunWith(S2MockitoJUnitRunner.class)
-@S2ContextConfiguration("app.dicon")
-@S2DatabaseConfiguration()
+@S2TestContextConfiguration("app.dicon")
+@S2DatabaseTestConfiguration()
 public class TestTargetImplTest {
 
 	TestTarget target;

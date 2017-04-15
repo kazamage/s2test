@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE logback>
+<configuration>
+
+    <property name="ROOT_LEVEL" value="DEBUG" />
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>TRACE</level>
+        </filter>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>%d{yyyy-MMM-dd HH:mm:ss.SSS} %-5level %marker %logger - %msg%n</Pattern>
+        </layout>
+    </appender>
+
+    <root level="${ROOT_LEVEL}">
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+</configuration>

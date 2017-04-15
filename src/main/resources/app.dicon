@@ -4,10 +4,5 @@
 <components namespace="sample">
   <include path="convention.dicon"/>
   <include path="jdbc.dicon"/>
-  <component name="service" class="jp.pgw.develop.swallow.sample.ServiceImpl" />
-  <component name="dbService" class="jp.pgw.develop.swallow.sample.DBServiceImpl" />
-  <component name="testTarget" class="jp.pgw.develop.swallow.sample.TestTargetImpl">
-    <property name="service">service</property>
-    <property name="dbService">dbService</property>
-  </component>
+  <component name="service" class="jp.pgw.develop.swallow.sample.service.impl.ServiceImpl"/>
 </components>

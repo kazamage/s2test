@@ -1,4 +1,4 @@
-package jp.pgw.develop.swallow.sample;
+package jp.pgw.develop.swallow.sample.service.impl;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -8,6 +8,8 @@ import java.sql.Statement;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.sql.DataSource;
+
+import jp.pgw.develop.swallow.sample.service.DBService;
 
 @TransactionAttribute(TransactionAttributeType.REQUIRED)
 public class DBServiceImpl implements DBService {

@@ -1,4 +1,4 @@
-package jp.pgw.develop.swallow.sample;
+package jp.pgw.develop.swallow.sample.target;
 
 public interface TestTarget {
 

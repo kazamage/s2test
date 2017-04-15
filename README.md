@@ -1,1 +1,1 @@
-# s2test
+# S2Test
