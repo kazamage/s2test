@@ -7,7 +7,6 @@ import javax.sql.DataSource;
 import javax.sql.XADataSource;
 
 import org.dbunit.AbstractDatabaseTester;
-import org.dbunit.DefaultOperationListener;
 import org.dbunit.database.DatabaseConfig;
 import org.dbunit.database.DatabaseConnection;
 import org.dbunit.database.IDatabaseConnection;
@@ -55,9 +54,6 @@ public class S2DatabaseTester extends AbstractDatabaseTester implements TestRule
 
             @Override
             public void evaluate() throws Throwable {
-                setOperationListener(new DefaultOperationListener() {
-
-                });
                 final IDataSet dataSet = createDataSet();
                 if (dataSet == null) {
                     setSetUpOperation(DatabaseOperation.NONE);

@@ -25,16 +25,20 @@ public class TestTargetImpl implements TestTarget {
 
     @Override
     public void exec() {
+        final List<Person> before = personService.findAll();
+        for (final Person p : before) {
+            log.info(p.toString());
+        }
         final Person person = new Person();
         person.setFirstName("ほげ");
         person.setLastName("もげ");
         person.setAge(20);
         personService.insert(person);
-        final List<Person> persons = personService.findAll();
-        for (final Person p : persons) {
+        final List<Person> after = personService.findAll();
+        for (final Person p : after) {
             log.info(p.toString());
         }
-        log.info("delete count: {}.", personService.deleteAll(persons));
+        // log.info("delete count: {}.", personService.deleteAll(persons));
     }
 
 }

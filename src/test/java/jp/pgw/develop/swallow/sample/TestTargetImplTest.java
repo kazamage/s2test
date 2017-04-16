@@ -1,5 +1,6 @@
 package jp.pgw.develop.swallow.sample;
 
+import org.dbunit.ext.h2.H2DataTypeFactory;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,7 +16,7 @@ import jp.pgw.develop.swallow.sample.target.TestTarget;
 
 @RunWith(S2MockitoJUnitRunner.class)
 @S2TestContextConfiguration
-@S2DatabaseTestConfiguration
+@S2DatabaseTestConfiguration(enableCommit = true)
 public class TestTargetImplTest {
 
     TestTarget target;
@@ -34,8 +35,8 @@ public class TestTargetImplTest {
 
     @Before
     public void setUp() {
-        // ctx.register("test", "testSchemaName");
-        ctx.register(S2TestSchemaInfo.class);
+        ctx.register(new S2TestSchemaInfo(null));
+        ctx.register(H2DataTypeFactory.class);
     }
 
     @Test

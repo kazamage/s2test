@@ -22,6 +22,8 @@ public interface S2TestContext {
 
     void override(Object component, String componentName);
 
+    void override(ComponentDef componentDef);
+
     void include(String path);
 
     <T> T getComponent(Class<? extends T> componentKey);

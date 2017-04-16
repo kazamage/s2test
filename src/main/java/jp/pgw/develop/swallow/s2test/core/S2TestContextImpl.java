@@ -182,6 +182,12 @@ public class S2TestContextImpl implements S2InternalTestContext {
         register(override, component, componentName);
     }
 
+    @Override
+    public void override(final ComponentDef componentDef) {
+        componentDef.setContainer(override);
+        override.register(componentDef);
+    }
+
     protected void register(final S2Container container, final Object component, final String componentName) {
         container.register(component, componentName);
     }

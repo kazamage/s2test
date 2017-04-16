@@ -8,6 +8,9 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.sql.DataSource;
 import javax.sql.XADataSource;
+import javax.transaction.TransactionManager;
+import javax.transaction.TransactionSynchronizationRegistry;
+import javax.transaction.UserTransaction;
 
 import org.junit.runner.Description;
 import org.junit.runner.notification.Failure;
@@ -22,6 +25,8 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.internal.junit.DefaultTestFinishedEvent;
 import org.mockito.internal.junit.MockitoTestListener;
 import org.mockito.internal.util.Supplier;
+import org.seasar.extension.dbcp.ConnectionPool;
+import org.seasar.extension.tx.adapter.JTATransactionManagerAdapter;
 import org.seasar.framework.container.ComponentDef;
 import org.seasar.framework.container.S2Container;
 import org.seasar.framework.container.factory.S2ContainerFactory;
@@ -238,6 +243,21 @@ public class S2InternalRunner extends BlockJUnit4ClassRunner {
         }
 
         if (!enableCommit) {
+            if (container.hasComponentDef(UserTransaction.class)) {
+                testContext.override(container.getComponentDef(UserTransaction.class));
+            }
+            if (container.hasComponentDef(TransactionManager.class)) {
+                testContext.override(container.getComponentDef(TransactionManager.class));
+            }
+            if (container.hasComponentDef(TransactionSynchronizationRegistry.class)) {
+                testContext.override(container.getComponentDef(TransactionSynchronizationRegistry.class));
+            }
+            if (container.hasComponentDef(JTATransactionManagerAdapter.class)) {
+                testContext.override(container.getComponentDef(JTATransactionManagerAdapter.class));
+            }
+            if (container.hasComponentDef(ConnectionPool.class)) {
+                testContext.override(container.getComponentDef(ConnectionPool.class));
+            }
             if (container.hasComponentDef(XADataSource.class)) {
                 final ComponentDef def = container.getComponentDef(XADataSource.class);
                 testContext.override(
